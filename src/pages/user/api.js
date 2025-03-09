@@ -1,6 +1,6 @@
 import { API_URL } from '../../../shared/urls';
-import {  REQUEST_METHOD } from './constants';
-import {  ACTION_TYPES } from './actions';
+import { REQUEST_METHOD } from './constants';
+import { ACTION_TYPES } from './actions';
 
 export const fetchUsers = () => {
   return {
@@ -15,7 +15,7 @@ export const fetchUsers = () => {
     },
   };
 };
-export const fetchUser = ({userId}) => {
+export const fetchUser = ({ userId }) => {
   return {
     url: API_URL.USERS.FETCH_USER.replace(':id', userId),
     method: REQUEST_METHOD.GET,
@@ -29,20 +29,18 @@ export const fetchUser = ({userId}) => {
   };
 };
 
-export const createUser = (user) => {
-  return {
-    url: API_URL.USERS.FETCH_USERS,
-    method: REQUEST_METHOD.POST,
-    payload: {
-      types: [
-        ACTION_TYPES.CREATE_USER_REQUEST,
-        ACTION_TYPES.CREATE_USER_SUCCESS,
-        ACTION_TYPES.CREATE_USER_FAILURE,
-      ],
-      data: user,
-    },
-  };
-}
+export const createUser = (user) => ({
+  url: API_URL.USERS.CREATE_USER,
+  method: REQUEST_METHOD.POST,
+  payload: {
+    types: [
+      ACTION_TYPES.CREATE_USER_REQUEST,
+      ACTION_TYPES.CREATE_USER_SUCCESS,
+      ACTION_TYPES.CREATE_USER_FAILURE,
+    ],
+    data: user,
+  },
+});
 
 
 

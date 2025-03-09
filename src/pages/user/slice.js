@@ -76,7 +76,6 @@ const slice = createSlice({
         state.error = payload;
       })
 
-      // Handle Update User Email Actions
       .addCase(ACTION_TYPES.UPDATE_USER_EMAIL_REQUEST, (state) => {
         state.isLoading = true;
       })

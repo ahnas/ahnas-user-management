@@ -21,17 +21,9 @@ export const handlers = [
           isLoading: false,
           error: null
         },
-        {
-          id: 3,
-          name: 'Boy Is',
-          email: 'boyis@example.com',
-          address: { street: '789 Oak St', city: 'Chicago' },
-          isLoading: false,
-          error: null
-        },
       ])
     );
-  }), 
+  }),
 
   rest.get('http://localhost:8000/users/:id', (req, res, ctx) => {
     const { id } = req.params;
@@ -45,12 +37,15 @@ export const handlers = [
     }
   }),
 
-  rest.post('http://localhost:8000/users', (req, res, ctx) => {
-    const { name, email } = req.body;
-    const newUser = { id: Date.now(), name, email, isLoading: false, error: null };
+  rest.post('http://localhost:8000/users', async (req, res, ctx) => {
+    const newUser = await req.json(); 
+
     return res(
       ctx.status(201),
-      ctx.json(newUser)
+      ctx.json({
+        id: Math.floor(Math.random() * 1000), 
+        ...newUser, 
+      })
     );
   }),
 ];
