@@ -1,0 +1,23 @@
+{
+  "name": "mock",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mockserver.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2 start ./src/mockserver.js --name Mock --watch",
+    "delete": "pm2 delete Mock"
+  },
+  "dependencies": {
+    "@mswjs/http-middleware": "^0.8.0",
+    "cors": "^2.8.5",
+    "pm2": "^5.3.0",
+    "express": "^4.18.2",
+    "msw": "^1.2.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.1"
+}
