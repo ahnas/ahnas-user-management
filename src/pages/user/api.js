@@ -43,18 +43,24 @@ export const createUser = (user) => ({
 });
 
 
-
-export const updateUserEmail = (userId, email) => {
+export const updateUser = (userId, name, email, address) => {
   return {
-    url: API_URL.USERS.UPDATE_USER_EMAIL.replace(':id', userId),
-    method: REQUEST_METHOD.PATCH,
+    url: API_URL.USERS.UPDATE_USER.replace(':id', userId),
+    method: REQUEST_METHOD.PUT,
     payload: {
       types: [
-        ACTION_TYPES.UPDATE_USER_EMAIL_REQUEST,
-        ACTION_TYPES.UPDATE_USER_EMAIL_SUCCESS,
-        ACTION_TYPES.UPDATE_USER_EMAIL_FAILURE,
+        ACTION_TYPES.UPDATE_USER_REQUEST,
+        ACTION_TYPES.UPDATE_USER_SUCCESS,
+        ACTION_TYPES.UPDATE_USER_FAILURE,
       ],
-      data: { email },
+      data: { 
+        name, 
+        email, 
+        address: {
+          street: address.street,
+          city: address.city
+        } 
+      },
     },
   };
 };

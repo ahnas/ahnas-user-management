@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions";
-import { getUserDetails } from "../selectors";
+import { getUserDetails,getUserLoadingState } from "../selectors";
 
 const UserList = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.user.isLoading);
+  const isLoading = useSelector(getUserLoadingState);
   const users = useSelector(getUserDetails);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,11 +56,11 @@ const UserList = () => {
       dispatch(actions.updateUser(formData));
     } else {
       dispatch(actions.createUser({ name: formData.name, email: formData.email, address: formData.address }));
-      console.log(formData);
     }
     closeModal();
   };
 
+  
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-2xl">
       <h2 className="text-2xl font-bold mb-4 flex justify-between items-center">

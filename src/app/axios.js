@@ -1,6 +1,6 @@
 import axios from 'axios';
 import queryString from 'query-string';
-const baseURL = "http://localhost:8000"
+const baseURL = "http://localhost:5000"
 
 
 export const getRequest = (URL, payload) => {
@@ -22,7 +22,7 @@ export const putRequest = (URL, payload) => {
     return axios.put(`${baseURL}/${URL}`, data, config).then((response) => response).catch((error) => ({ error }));
   }
   catch (err) {
-    console.log(err)
+    return console.log(err)
   }
 
 };

@@ -29,16 +29,13 @@ export function* handleAPIRequest(apiFn, ...rest) {
     const { data: response, error } = res;
 
     if (error) {
-
       yield put(failureAction({ error, isLoading: false }));
-      console.error('API Request Failed:', error);
       return { response: {}, error };
     }
 
 
     yield put(successAction({
       data: response,
-      message: response.message,
       isLoading: false,
     }));
 
@@ -46,7 +43,6 @@ export function* handleAPIRequest(apiFn, ...rest) {
 
   } catch (err) {
 
-    console.error('Unexpected error in API call:', err);
     yield put(failureAction({
       error: err.message || 'An unexpected error occurred',
       isLoading: false,

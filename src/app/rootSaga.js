@@ -6,7 +6,6 @@ import { saga } from '../pages/user';
 
 const sagas = [];
 
-// Here you can include all the saga which you write for components
 _.values(modules).forEach((module) => {
   _.values(module).forEach((subModule) => {
     if (_.has(subModule, 'STATE_REDUCER_KEY') && _.has(subModule, 'saga')) {

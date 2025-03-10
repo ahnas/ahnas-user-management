@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "name": "11111",
+      "email": "johndoe@example.com",
+      "address": {
+        "street": "123 Main St",
+        "city": "Koyikode"
+      },
+      "id": "1"
+    },
+    {
+      "name": "2222",
+      "email": "qosiduciwa@mailinator.com",
+      "address": {
+        "street": "Consequat Placeat ",
+        "city": "Ut quisquam est dolo"
+      },
+      "id": "d228"
+    },
+    {
+      "id": "8929",
+      "name": "Mohammad Wyatt",
+      "email": "vulelil@mailinator.com",
+      "address": {
+        "street": "Omnis nulla corrupti",
+        "city": "Non ut tempor sapien"
+      }
+    },
+    {
+      "id": "a814",
+      "name": "Lucian Rodriquez",
+      "email": "muberi@mailinator.com",
+      "address": {
+        "street": "Voluptatem labore l",
+        "city": "Temporibus tempor qu"
+      }
+    }
+  ]
+}
