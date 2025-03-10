@@ -1,5 +1,5 @@
 import { call, put, takeLatest, all, fork, take } from 'redux-saga/effects';
-import { fetchUser, createUser, updateUser, fetchUsers } from './api';
+import { fetchUser, createUser, updateUser, fetchUsers, deleteUser } from './api';
 import { ACTION_TYPES } from './actions';
 import { actions as sliceActions } from './slice';
 import { handleAPIRequest } from '../../utils/http';
@@ -22,9 +22,9 @@ export function* fetchUsersRequest() {
 function* createUserSaga({ payload }) {
   try {
     yield fork(handleAPIRequest, createUser, payload);
-    const { payload:responseData, type } = yield take([ACTION_TYPES.CREATE_USER_SUCCESS, ACTION_TYPES.CREATE_USER_FAILURE]);
-    console.log("API Response:",responseData);
-    if(type === ACTION_TYPES.CREATE_USER_SUCCESS){
+    const { payload: responseData, type } = yield take([ACTION_TYPES.CREATE_USER_SUCCESS, ACTION_TYPES.CREATE_USER_FAILURE]);
+    console.log("API Response:", responseData);
+    if (type === ACTION_TYPES.CREATE_USER_SUCCESS) {
       yield call(handleAPIRequest, fetchUsers);
 
     }
@@ -37,28 +37,22 @@ function* createUserSaga({ payload }) {
 
 export function* fetchUserRequest({ payload }) {
   try {
-
     yield call(handleAPIRequest, fetchUser, payload);
-
     const { payload: response, type } = yield take([ACTION_TYPES.FETCH_USER_SUCCESS, ACTION_TYPES.FETCH_USER_FAILURE]);
-
     if (type === ACTION_TYPES.FETCH_USER_SUCCESS) {
       console.log('Fetched users successfully:', response);
     } else {
       console.log('Failed to fetch users:',);
     }
-
   } catch (error) {
     console.log('Error in saga:', error);
   }
 }
 
-
- 
 export function* updateUserRequest({ payload }) {
   try {
     const { id, name, email, address } = payload;
-    
+
     yield call(handleAPIRequest, updateUser, id, name, email, address);
     yield call(handleAPIRequest, fetchUsers);
 
@@ -78,6 +72,20 @@ export function* updateUserRequest({ payload }) {
   }
 }
 
+export function* deleteUserRequest({ payload }) {
+  try {
+    const { payload: response, type } = yield call(handleAPIRequest, deleteUser, payload);
+    yield call(handleAPIRequest, fetchUsers);
+
+    if (type === ACTION_TYPES.DELETE_USER_SUCCESS) {
+      console.log("Deleted user successfully:", response);
+      yield call(handleAPIRequest, fetchUsers);
+      console.error("Failed to delete user");
+    }
+  } catch (error) {
+    console.error("Error in deleteUser saga:", error);
+  }
+}
 
 export default function* userSaga() {
   yield all([
@@ -85,5 +93,6 @@ export default function* userSaga() {
     takeLatest(ACTION_TYPES.CREATE_USER, createUserSaga),
     takeLatest(ACTION_TYPES.FETCH_USER, fetchUserRequest),
     takeLatest(ACTION_TYPES.UPDATE_USER, updateUserRequest),
+    takeLatest(ACTION_TYPES.DELETE_USER, deleteUserRequest),
   ]);
 }

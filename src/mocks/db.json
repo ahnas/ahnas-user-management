@@ -1,31 +1,22 @@
 {
   "users": [
     {
-      "name": "Ahnas",
-      "email": "manuahnas@gmail.comasfas",
+      "id": "4590",
+      "name": "Francesca Flowers",
+      "email": "vywom@mailinator.com",
       "address": {
-        "street": "Kozhikode",
-        "city": "Thamarassy"
-      },
-      "id": "94aa"
+        "street": "Tempore esse nostru",
+        "city": "Ut alias anim offici"
+      }
     },
     {
-      "name": "John",
-      "email": "John@gmail.com",
+      "id": "5b52",
+      "name": "Raven Fowler",
+      "email": "mitysecupu@mailinator.com",
       "address": {
-        "street": "Americe",
-        "city": "UK"
-      },
-      "id": "e4e5"
-    },
-    {
-      "name": "Sabir",
-      "email": "Sham@gmail.com",
-      "address": {
-        "street": "Thamarassery,Kozhikode,Kerala-673572,India",
-        "city": "Kozhikode"
-      },
-      "id": "edd9"
+        "street": "Quam dolor in in lib",
+        "city": "Rerum ut eveniet ip"
+      }
     }
   ]
 }

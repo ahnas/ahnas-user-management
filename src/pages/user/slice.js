@@ -87,6 +87,11 @@ const slice = createSlice({
       .addCase(ACTION_TYPES.UPDATE_USER_FAILURE, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+      })
+      .addCase(ACTION_TYPES.DELETE_USER_SUCCESS, (state, { payload }) => {
+        state.isLoading = false;
+        state.user = state.user.filter(user => user.id !== payload.id);
+        state.error = null;
       });
   },
 });

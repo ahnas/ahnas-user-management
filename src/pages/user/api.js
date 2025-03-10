@@ -53,14 +53,27 @@ export const updateUser = (userId, name, email, address) => {
         ACTION_TYPES.UPDATE_USER_SUCCESS,
         ACTION_TYPES.UPDATE_USER_FAILURE,
       ],
-      data: { 
-        name, 
-        email, 
+      data: {
+        name,
+        email,
         address: {
           street: address.street,
           city: address.city
-        } 
+        }
       },
     },
   };
 };
+
+export const deleteUser = (userId) => ({
+  url: API_URL.USERS.DELETE_USER.replace(":id", userId),
+  method: REQUEST_METHOD.DELETE,
+  payload: {
+    types: [
+      ACTION_TYPES.DELETE_USER_REQUEST,
+      ACTION_TYPES.DELETE_USER_SUCCESS,
+      ACTION_TYPES.DELETE_USER_FAILURE,
+    ],
+    data: { id: userId },
+  },
+});
